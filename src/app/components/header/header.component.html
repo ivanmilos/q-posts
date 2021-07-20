@@ -1,0 +1,13 @@
+<div class="header-placeholder"></div>
+<header 
+    class="header"
+    [class.header-is-sticky]="isSticky$ | async"
+>
+    <div class="app-container">
+        <div class="header-inner">
+            <a class="header-logo" routerLink="/">
+                <img src="/assets/images/logo.svg" alt="Q POSTS">
+            </a>
+        </div>
+    </div>
+</header>

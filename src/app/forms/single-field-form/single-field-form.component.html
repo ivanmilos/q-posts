@@ -1,0 +1,16 @@
+<form
+    class="form"
+    [formGroup]="theForm"
+    (ngSubmit)="onSubmit()"
+    #form="ngForm"
+>
+    <input
+        class="form-input"
+        formControlName="inputControl"
+        type="text"
+        placeholder="{{ placeholder }}"
+    >
+    <app-button colorType="primary" type="submit">
+        {{ buttonLabel }}
+    </app-button>
+</form>

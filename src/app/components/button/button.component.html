@@ -1,0 +1,29 @@
+<ng-container *ngIf="route else buttonTpl">
+    <a
+        class="btn {{ cssClasses }}"
+        [routerLink]="[route]"
+        [queryParams]="queryParams"
+        [attr.title]="title"
+    >
+        <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+    </a>
+</ng-container>
+
+<ng-template #buttonTpl>
+    <button
+        class="btn {{ cssClasses }}"
+        type="{{ type }}"
+        [attr.title]="title"
+        [disabled]="isDisabled"
+        [class.btn-disabled]="isDisabled && !isLoading"
+        [tabindex]="isDisabled ? '-1' : null"
+    >
+        <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+    </button>
+</ng-template>
+
+<ng-template #contentTpl>
+    <span class="btn-inner" [class.mini-loader]="isLoading">
+        <span><ng-content></ng-content></span>
+    </span>
+</ng-template>

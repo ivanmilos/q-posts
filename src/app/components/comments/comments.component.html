@@ -1,0 +1,11 @@
+<app-title
+    class="comments-title"
+    [elementType]="titleElementType"
+    overrideStyle="h6"
+>
+    {{ dictionary.COMMENTS }}
+</app-title>
+<app-comment
+    *ngFor="let comment of comments"
+    [comment]="comment"
+></app-comment>

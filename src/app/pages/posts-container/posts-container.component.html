@@ -1,0 +1,42 @@
+<div *ngIf="pageData$ | async as data" class="app-container app-section">
+
+    <div class="app-flex">
+        <app-title overrideStyle="h2">
+            {{ data.posts?.length }} {{ dictionary.POSTS }}
+        </app-title>
+
+        <app-single-field-form
+            placeholder="{{ dictionary.FORM_PLACEHOLDER }}"
+            buttonLabel="{{ dictionary.FORM_BTN }}"
+            [inputControl]="filterControl"
+            (formSubmit)="onFilterFormSubmit($event)"
+        ></app-single-field-form>
+    </div>
+
+    <ng-container *ngIf="paginatedPosts$ | async as paginatedPosts">
+        <app-post
+            *ngFor="let post of paginatedPosts"
+            [post]="post"
+            [comments]="data.comments[post.id]"
+            [user]="data.users[post.userId]"
+        ></app-post>
+    </ng-container>
+
+    <app-pagination
+        *ngIf="data.posts?.length > pageSize"
+        [currentPage]="currentPage$ | async"
+        [pageSize]="pageSize"
+        [totalItems]="data.posts?.length"
+        (paginationClick)="onPaginationClick($event)"
+    ></app-pagination>
+
+    <div *ngIf="data.posts?.length === 0">
+        <app-button
+            color="danger"
+            size="large"
+            (click)="onResetClick()"
+        >
+            {{ dictionary.BTN_RESET }}
+        </app-button>
+    </div>
+</div>

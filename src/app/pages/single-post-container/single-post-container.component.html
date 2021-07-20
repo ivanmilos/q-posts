@@ -1,0 +1,16 @@
+<div *ngIf="data$ | async as data" class="app-container app-section">
+    <app-button 
+        class="post-back-button"
+        color="primary-dark"
+        styleType="outline"
+        (click)="onBackClick()"
+    >
+        {{ dictionary.BTN_BACK }}
+    </app-button>
+    <app-post
+        [post]="data.post"
+        [comments]="data.comments"
+        [user]="data.user"
+        [isSingle]="true"
+    ></app-post>
+</div>

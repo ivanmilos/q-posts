@@ -1,0 +1,47 @@
+@import 'src/scss/base';
+
+:host {
+    display: block;
+    color: $primary-dark;
+    text-align: center;
+    width: 340px;
+}
+
+.form {
+    max-width: 570px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+    border-radius: 28px;
+    border: 1px solid $grey-BD;
+    transition: $app-transition;
+
+    &:hover,
+    &:focus-within {
+        border-color: $primary-dark;
+    }
+}
+
+.form-input {
+    padding: 0 4px 0 10px;
+    border: none;
+    font-size: 16px;
+    color: $primary-dark;
+    flex: 1;
+    border-radius: $app-border-radius;
+
+    @include mq-min($xxs) {
+        padding: 0 10px 0 25px;
+    }
+
+    &::placeholder {
+        color: $grey-82;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}

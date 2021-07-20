@@ -1,0 +1,32 @@
+<div class="post" [class.post--single]="isSingle">
+    <app-title
+        class="post-title"
+        [elementType]="isSingle ? 'h1' : 'h3'"
+        [overrideStyle]="isSingle ? 'h2' : 'h5'"
+    >
+        {{ post.title }}
+    </app-title>
+
+    <p *ngIf="user" class="post-author">
+        <strong>{{ dictionary.AUTHOR }}:</strong> {{ user.name }} ({{ user.username }}, {{ user.email }})
+    </p>
+
+    <p class="post-body">{{ post.body }}</p>
+
+    <app-comments
+        *ngIf="comments?.length && (isSingle || areCommentsVisible)"
+        class="post-comments"
+        [titleElementType]="isSingle ? 'h2' : 'h3'"
+        [comments]="comments"
+    >
+    </app-comments>
+
+    <div *ngIf="!isSingle" class="post-buttons">
+        <app-button styleType="outline" (click)="toggleComments()">
+            {{ areCommentsVisible ? dictionary.BTN_HIDE_COMMENTS : dictionary.BTN_SHOW_COMMENTS }}
+        </app-button>
+        <app-button route="/{{ navRoutes.SINGLE_POST }}/{{ post.id }}">
+            {{ dictionary.BTN_MORE }}
+        </app-button>
+    </div>
+</div>
